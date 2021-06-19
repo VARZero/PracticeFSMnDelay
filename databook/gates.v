@@ -212,6 +212,24 @@ module nr7(y, a, b, c, d, e, f, g);
     assign y = ~(a | b | c | d | e | f | g);
 endmodule
 
+// XORs (and와 or의 조합으로 들어가야 하지만, 여기서는 assign문 하나로 진행합니다.)
+// (다만 assign 아래에 주석으로 어떻게 조합 되어 있는지 기입해서 진행)
+// 2-input xor
+module xr2(y, a, b);
+    input a, b;
+    output y;
+
+    assign y = a ^ b;
+endmodule
+
+// 2-input xor
+module xr2(y, a, b);
+    input a, b;
+    output y;
+
+    assign y = a ^ b;
+endmodule
+
 // TRISTATE BUFFER
 // inverting tri-buf
 module it(y, a, e);
