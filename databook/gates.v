@@ -219,15 +219,23 @@ module xr2(y, a, b);
     input a, b;
     output y;
 
+    // wire w1, w2;
+
     assign y = a ^ b;
+    // ORc or2(w1, a, b);
+    // ANDc nd2(w2, a, b);
+    // OUTXOR ad2(y, w1, w2);
 endmodule
 
-// 2-input xor
-module xr2(y, a, b);
-    input a, b;
+// 3-input xor
+module xr3(y, a, b, c);
+    input a, b, c;
     output y;
 
-    assign y = a ^ b;
+    wire w1;
+
+    xrab xr2(w1, a, b);
+    xrwc xr2(y, w1, c);
 endmodule
 
 // TRISTATE BUFFER
