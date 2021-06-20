@@ -1,5 +1,4 @@
-`include "../../databook/gates.v"
-`include "../circuit.v"
+`include "../../circuitEle.v"
 
 module counter(y, a, b, cin);
     input [3:0] a, b;
