@@ -10,9 +10,9 @@ module mx2(y, a, b, s);
 
     wire w1, w2, w3;
 
-    Not iv(w1, s);
-    Mtop nit(w2, a, w1);
-    Mbot it(w3, b, s);
+    iv Not(w1, s);
+    nit Mtop(w2, a, w1);
+    it Mbot(w3, b, s);
     if (w2==1'bz) y = w3;
     else if (w3==1'bz) y = w2;
 endmodule
@@ -26,15 +26,15 @@ module mx2b4(y, a, b, s);
     wire w1;
     wire [3:0] w2, w3;
 
-    Not iv(w1, s);
-    Mtop nit(w2[0], a[0], w1);
-    Mtop nit(w2[1], a[1], w1);
-    Mtop nit(w2[2], a[2], w1);
-    Mtop nit(w2[3], a[3], w1);
-    Mbot it(w3[0], b[0], s);
-    Mbot it(w3[1], b[1], s);
-    Mbot it(w3[2], b[2], s);
-    Mbot it(w3[3], b[3], s);
+    it Not(w1, s);
+    nit Mtop0(w2[0], a[0], w1);
+    nit Mtop1(w2[1], a[1], w1);
+    nit Mtop2(w2[2], a[2], w1);
+    nit Mtop3(w2[3], a[3], w1);
+    it Mbot0(w3[0], b[0], s);
+    it Mbot1(w3[1], b[1], s);
+    it Mbot2(w3[2], b[2], s);
+    it Mbot3(w3[3], b[3], s);
     if (w2==1'bz) y = w3;
     else if (w3==1'bz) y = w2;
 endmodule
@@ -45,8 +45,8 @@ module ha(y, cout, a, b);
     input a, b;
     output y, cout;
 
-    SUM xr2(y, a, b);
-    CARRY ad2(cout, a, b);
+    xr2 SUM(y, a, b);
+    ad2 CARRY(cout, a, b);
 endmodule
 
 // full-adder
@@ -56,7 +56,7 @@ module fa(y, cout, cin, a, b);
 
     wire w1, wc1, wc2;
 
-    ADD ha(w1, wc1, a, b);
-    CARRYADD ha(y, wc2, w1, cin);
-    CARRYCH or2(cout, wc1, wc2);
+    ha ADD(w1, wc1, a, b);
+    ha CARRYADD(y, wc2, w1, cin);
+    or2 CARRYCH(cout, wc1, wc2);
 endmodule

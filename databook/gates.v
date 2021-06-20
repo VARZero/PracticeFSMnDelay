@@ -235,8 +235,8 @@ module xr3(y, a, b, c);
 
     wire w1;
 
-    xrab xr2(w1, a, b);
-    xrwc xr2(y, w1, c);
+    xr2 xrab(w1, a, b);
+    xr2 xrwc(y, w1, c);
 endmodule
 
 // TRISTATE BUFFER
