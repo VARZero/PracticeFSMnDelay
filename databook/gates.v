@@ -245,7 +245,7 @@ module it(y, a, e);
     input a, e;
     output y;
 
-    assign y = (e==1'b0) ? z : (a==1'b0) ? 1 : 0;
+    assign y = (e==1'b0) ? 1'bz : (a==1'b0) ? 1 : 0;
 endmodule
 
 // inverting enable tri-buf
@@ -253,7 +253,7 @@ module ite(y, a, e);
     input a, e;
     output y;
 
-    assign y = (e==1'b1) ? z : (a==1'b0) ? 1 : 0;
+    assign y = (e==1'b1) ? 1'bz : (a==1'b0) ? 1 : 0;
 endmodule
 
 // non-inverting tri-buf
@@ -261,7 +261,7 @@ module nit(y, a, e);
     input a, e;
     output y;
 
-    assign y = (e==1'b0) ? z : (a==1'b0) ? 0 : 1;
+    assign y = (e==1'b0) ? 1'bz : (a==1'b0) ? 0 : 1;
 endmodule
 
 // non-inverting enable tri-buf
@@ -269,7 +269,7 @@ module nite(y, a, e);
     input a, e;
     output y;
 
-    assign y = (e==1'b1) ? z : (a==1'b0) ? 0 : 1;
+    assign y = (e==1'b1) ? 1'bz : (a==1'b0) ? 0 : 1;
 endmodule
 
 // D FLIP-FLOP
