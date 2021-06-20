@@ -18,10 +18,10 @@ module mx2(y, a, b, s);
 endmodule
 
 // 2-to-1 mux (4bit)
-module mx2(y, a, b, s);
+module mx2b4(y, a, b, s);
     input [3:0] a, b;
     input s;
-    output y;
+    output [3:0] y;
 
     wire w1;
     wire [3:0] w2, w3;
@@ -39,12 +39,24 @@ module mx2(y, a, b, s);
     else if (w3==1'bz) y = w2;
 endmodule
 
-// RIPPLE CARRY
+// RIPPLE CARRY ADDER
 // half-adder
 module ha(y, cout, a, b);
     input a, b;
     output y, cout;
 
-    
+    SUM xr2(y, a, b);
+    CARRY ad2(cout, a, b);
+endmodule
 
 // full-adder
+module fa(y, cout, cin, a, b);
+    input a, b, cin;
+    output y, cout;
+
+    wire w1, wc1, wc2;
+
+    ADD ha(w1, wc1, a, b);
+    CARRYADD ha(y, wc2, w1, cin);
+    CARRYCH or2(cout, wc1, wc2);
+endmodule
