@@ -21,10 +21,10 @@ module MicroWaveRange(clk1, clk2, r, tin, p, rst);
     output p;
 
     wire [3:0] w1, w2, w3;
-    wire w4, w5;
+    wire w4, w5, w6;
 
-    mx2b4 SUNSUBSEL(w1, tin, 4'b0001, p);
-    counter TIMER(w3, w2, w1, p);
+    mx2b4 SUNSUBSEL(w1, tin, 4'b1110, w6);
+    counter TIMER(w3, w2, w1, w6);
     dffr TIMERMEM0(clk1, rst, w3[0], w2[0]);
     dffr TIMERMEM1(clk1, rst, w3[1], w2[1]);
     dffr TIMERMEM2(clk1, rst, w3[2], w2[2]);
@@ -32,4 +32,5 @@ module MicroWaveRange(clk1, clk2, r, tin, p, rst);
     nd4 CHECKZERO(w4, w2[0], w2[1], w2[2], w2[3]);
     ad2 RUNCHECK(w5, r, w4);
     dffr STATE(clk2, rst, w5, p);
+    ad2 ENDCHECK(w6, w4, p);
 endmodule
