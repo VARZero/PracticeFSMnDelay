@@ -15,7 +15,8 @@ module tb_MWA;
         #0 clk = 0; rst = 0; r = 0; tin = 4'b0000;
         #5 rst = 5;
         #15 tin = 4'b0100; r = 1;
-        #160;
+        #10 tin = 4'b0000;
+        #150;
         $finish;
     end
 endmodule

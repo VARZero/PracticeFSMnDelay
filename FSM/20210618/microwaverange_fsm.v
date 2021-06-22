@@ -29,7 +29,7 @@ module MicroWaveRange(clk1, clk2, r, tin, p, rst);
     dffr TIMERMEM1(clk1, rst, w3[1], w2[1]);
     dffr TIMERMEM2(clk1, rst, w3[2], w2[2]);
     dffr TIMERMEM3(clk1, rst, w3[3], w2[3]);
-    nd4 CHECKZERO(w4, w2[0], w2[1], w2[2], w2[3]);
+    or4 CHECKZERO(w4, w2[0], w2[1], w2[2], w2[3]);
     ad2 RUNCHECK(w5, r, w4);
     dffr STATE(clk2, rst, w5, p);
     ad2 ENDCHECK(w6, w4, p);
