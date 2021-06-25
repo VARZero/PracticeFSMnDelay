@@ -42,11 +42,33 @@ module 8to1bShift(in, out);
     end
 endmodule
 
-module calculator(CLKd, CLKs, Y, C, Of, A, B, Op, S);
-    input CLKd, CLKs;
+module calculator(CLKd, CLKs, rst, Y, C, Of, A, B, Op, S);
+    input CLKd, CLKs, rst;
     output [7:0] Y;
     output C, Of;
     input [7:0] A, B;
     input [2:0] Op;
 
+    wire valueEn;
+    wire [7:0] ASave, BSave;
+
+    // A 부분을 저장할 공간
+    dffrEn IA0Memory(CLKd, rst, A[0], ASave[0], valueEn);
+    dffrEn IA1Memory(CLKd, rst, A[1], ASave[1], valueEn);
+    dffrEn IA2Memory(CLKd, rst, A[2], ASave[2], valueEn);
+    dffrEn IA3Memory(CLKd, rst, A[3], ASave[3], valueEn);
+    dffrEn IA4Memory(CLKd, rst, A[4], ASave[4], valueEn);
+    dffrEn IA5Memory(CLKd, rst, A[5], ASave[5], valueEn);
+    dffrEn IA6Memory(CLKd, rst, A[6], ASave[6], valueEn);
+    dffrEn IA7Memory(CLKd, rst, A[7], ASave[7], valueEn);
+
+    // B 부분을 저장할 공간
+    dffrEn IB0Memory(CLKd, rst, B[0], BSave[0], valueEn);
+    dffrEn IB1Memory(CLKd, rst, B[1], BSave[1], valueEn);
+    dffrEn IB2Memory(CLKd, rst, B[2], BSave[2], valueEn);
+    dffrEn IB3Memory(CLKd, rst, B[3], BSave[3], valueEn);
+    dffrEn IB4Memory(CLKd, rst, B[4], BSave[4], valueEn);
+    dffrEn IB5Memory(CLKd, rst, B[5], BSave[5], valueEn);
+    dffrEn IB6Memory(CLKd, rst, B[6], BSave[6], valueEn);
+    dffrEn IB7Memory(CLKd, rst, B[7], BSave[7], valueEn);
 endmodule

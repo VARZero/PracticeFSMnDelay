@@ -1,4 +1,4 @@
-// databook이외의 회로 요소들
+// databook이외의 편의를 위해 미리 작성하는 회로 요소들
 
 `include "./databook/gates.v"
 
@@ -41,6 +41,40 @@ module mx2b4(y, a, b, s);
     //it Mbot3(w3[3], b[3], s);
     //if (w2==1'bz) y = w3;
     //else if (w3==1'bz) y = w2;
+endmodule
+
+// 3-to-1 mux (1bit)
+module mx3(y, a, b, c, s);
+    input a, b, c;
+    input [1:0] s;
+    output y;
+
+    always @(s) begin
+        case (s)
+            2'b00: y = a;
+            2'b01: y = b;
+            2'b10: y = c; 
+            2'b11: y = 1'bx;
+            default: y = 1'bx;
+        endcase
+    end
+endmodule
+
+// 4-to-1 mux (1bit)
+module mx3(y, a, b, c, d, s);
+    input a, b, c, d;
+    input [1:0] s;
+    output y;
+
+    always @(s) begin
+        case (s)
+            2'b00: y = a;
+            2'b01: y = b;
+            2'b10: y = c; 
+            2'b11: y = d;
+            default: y = 1'bx;
+        endcase
+    end
 endmodule
 
 // RIPPLE CARRY ADDER
